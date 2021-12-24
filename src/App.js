@@ -1,25 +1,36 @@
-import logo from './logo.svg';
+import React, { Component } from 'react'
 import './App.css';
+import About from './About';
+import Dog from './Dog';
+import Contact from './Contact';
+import {Route, Switch, NavLink} from "react-router-dom";
 
-function App() {
+
+const Hater= () => <h1>I Hate Dogss!!</h1>
+
+class  App extends Component {
+  render() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <nav className="App-nav">
+        <NavLink exact activeClassName="active-link" to="/">About </NavLink>
+        <NavLink exact activeClassName="active-link" to="/dog">Dog </NavLink>
+        <NavLink exact activeClassName="active-link" to="/contact">Contact </NavLink>
+        {/* <a href="/dog">Dog</a>
+        <a href="/contact">Contact</a>
+        <a href="/">About</a> */}
+      </nav>
+      <Switch>
+      <Route exact path="/" component={About}/>
+      <Route exact path="/dog" component={Dog}/>
+      <Route exact path="/dog/hater" component={Hater}/>
+      <Route exact path="/contact" component={Contact}/>
+      
+      </Switch>
+
     </div>
   );
+}
 }
 
 export default App;
